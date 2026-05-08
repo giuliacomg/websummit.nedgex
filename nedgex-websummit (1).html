@@ -1,0 +1,1732 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>NEDGEX × Web Summit Rio 2026</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,200;0,9..40,300;0,9..40,400;0,9..40,500;1,9..40,300&family=DM+Serif+Display:ital@0;1&display=swap" rel="stylesheet">
+<style>
+:root {
+  --red: #F25440;
+  --green: #D2EFC9;
+  --white: #FAFAF8;
+  --off-white: #F2F0EB;
+  --dark: #141210;
+  --dark-2: #1E1B18;
+  --dark-3: #2A2623;
+  --mid: #6B6560;
+  --light: #C4BFB8;
+  --border: rgba(180,172,162,0.2);
+  --border-dark: rgba(255,255,255,0.08);
+
+  --font-body: 'DM Sans', sans-serif;
+  --font-display: 'DM Serif Display', serif;
+
+  --r-sm: 12px;
+  --r-md: 20px;
+  --r-lg: 32px;
+  --r-xl: 48px;
+  --r-pill: 999px;
+}
+
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+html { scroll-behavior: smooth; font-size: 16px; }
+
+body {
+  font-family: var(--font-body);
+  background: var(--dark);
+  color: var(--white);
+  overflow-x: hidden;
+  -webkit-font-smoothing: antialiased;
+}
+
+/* ── SCROLLBAR ── */
+::-webkit-scrollbar { width: 3px; }
+::-webkit-scrollbar-track { background: var(--dark); }
+::-webkit-scrollbar-thumb { background: var(--dark-3); border-radius: 3px; }
+
+/* ── NAV ── */
+nav {
+  position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+  display: flex; align-items: center; justify-content: space-between;
+  padding: 20px 48px;
+  border-bottom: 1px solid var(--border-dark);
+  backdrop-filter: blur(20px);
+  background: rgba(20,18,16,0.7);
+  transition: all 0.4s ease;
+}
+
+.nav-logo {
+  display: flex; align-items: center; gap: 10px;
+}
+.nav-logo-mark {
+  width: 32px; height: 32px;
+  border: 1px solid var(--red);
+  border-radius: 8px;
+  display: flex; align-items: center; justify-content: center;
+}
+.nav-logo-mark svg { width: 16px; height: 16px; }
+.nav-brand { font-size: 13px; font-weight: 400; letter-spacing: 0.12em; text-transform: uppercase; color: var(--light); }
+
+.nav-center { display: flex; gap: 32px; }
+.nav-center a {
+  font-size: 12px; font-weight: 400; letter-spacing: 0.06em;
+  text-decoration: none; color: var(--mid);
+  transition: color 0.25s;
+}
+.nav-center a:hover { color: var(--white); }
+
+.nav-cta {
+  font-size: 12px; font-weight: 400; letter-spacing: 0.06em;
+  text-decoration: none; color: var(--dark);
+  background: var(--white);
+  padding: 8px 20px;
+  border-radius: var(--r-pill);
+  transition: all 0.25s;
+}
+.nav-cta:hover { background: var(--green); }
+
+/* ── HERO ── */
+.hero {
+  min-height: 100vh;
+  display: flex; flex-direction: column; justify-content: flex-end;
+  padding: 0 48px 80px;
+  position: relative;
+  overflow: hidden;
+}
+
+.hero-bg {
+  position: absolute; inset: 0; z-index: 0;
+  pointer-events: none;
+}
+
+/* Thin line grid */
+.hero-grid {
+  position: absolute; inset: 0;
+  background-image:
+    linear-gradient(rgba(255,255,255,0.025) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255,255,255,0.025) 1px, transparent 1px);
+  background-size: 80px 80px;
+}
+
+/* Diagonal accent lines */
+.hero-lines {
+  position: absolute; inset: 0; overflow: hidden;
+}
+.hero-lines::before {
+  content: '';
+  position: absolute;
+  top: -20%; right: -10%; width: 1px; height: 160%;
+  background: linear-gradient(to bottom, transparent, rgba(242,84,64,0.3), transparent);
+  transform: rotate(-15deg);
+  transform-origin: center;
+}
+.hero-lines::after {
+  content: '';
+  position: absolute;
+  top: -20%; right: 15%; width: 1px; height: 160%;
+  background: linear-gradient(to bottom, transparent, rgba(242,84,64,0.12), transparent);
+  transform: rotate(-15deg);
+}
+
+/* Soft radial glow */
+.hero-glow {
+  position: absolute;
+  top: 20%; right: 10%;
+  width: 600px; height: 600px;
+  background: radial-gradient(circle at center, rgba(242,84,64,0.06) 0%, transparent 70%);
+  border-radius: 50%;
+}
+
+.hero-glow-2 {
+  position: absolute;
+  bottom: 0; left: 20%;
+  width: 500px; height: 300px;
+  background: radial-gradient(ellipse at center, rgba(210,239,201,0.04) 0%, transparent 70%);
+}
+
+/* Capsule shapes */
+.hero-capsule {
+  position: absolute;
+  border: 1px solid rgba(255,255,255,0.06);
+  border-radius: 999px;
+}
+.hc1 { width: 1px; height: 280px; top: 15%; right: 32%; }
+.hc2 { width: 240px; height: 1px; top: 65%; left: 5%; }
+.hc3 {
+  width: 60px; height: 100px;
+  top: 25%; right: 22%;
+  border-color: rgba(242,84,64,0.15);
+}
+.hc4 {
+  width: 40px; height: 70px;
+  top: 40%; right: 28%;
+  border-color: rgba(210,239,201,0.1);
+}
+
+.hero-content { position: relative; z-index: 1; max-width: 900px; }
+
+.hero-eyebrow {
+  display: flex; align-items: center; gap: 16px;
+  margin-bottom: 40px;
+  opacity: 0;
+  animation: fadeUp 0.8s ease 0.2s forwards;
+}
+.eyebrow-line { width: 40px; height: 1px; background: var(--red); }
+.eyebrow-text {
+  font-size: 11px; font-weight: 400; letter-spacing: 0.18em;
+  text-transform: uppercase; color: var(--red);
+}
+
+.hero-title {
+  font-family: var(--font-display);
+  font-size: clamp(40px, 6vw, 80px);
+  line-height: 1.05;
+  font-weight: 400;
+  letter-spacing: -0.02em;
+  color: var(--white);
+  margin-bottom: 16px;
+  opacity: 0;
+  animation: fadeUp 0.9s ease 0.35s forwards;
+}
+.hero-title em {
+  font-style: italic;
+  color: var(--red);
+}
+
+.hero-sub {
+  font-size: clamp(14px, 1.5vw, 17px);
+  font-weight: 300;
+  color: var(--mid);
+  line-height: 1.7;
+  max-width: 560px;
+  margin-bottom: 48px;
+  opacity: 0;
+  animation: fadeUp 0.9s ease 0.5s forwards;
+}
+
+.hero-tags {
+  display: flex; flex-wrap: wrap; gap: 8px;
+  margin-bottom: 48px;
+  opacity: 0;
+  animation: fadeUp 0.9s ease 0.6s forwards;
+}
+.tag {
+  font-size: 11px; font-weight: 400; letter-spacing: 0.08em;
+  color: var(--light);
+  border: 1px solid var(--border-dark);
+  padding: 6px 14px;
+  border-radius: var(--r-pill);
+  background: rgba(255,255,255,0.03);
+}
+
+.hero-actions {
+  display: flex; gap: 12px; flex-wrap: wrap;
+  opacity: 0;
+  animation: fadeUp 0.9s ease 0.75s forwards;
+}
+
+.btn {
+  display: inline-flex; align-items: center; gap: 8px;
+  font-family: var(--font-body);
+  font-size: 13px; font-weight: 400; letter-spacing: 0.04em;
+  text-decoration: none;
+  padding: 12px 24px;
+  border-radius: var(--r-pill);
+  border: 1px solid transparent;
+  cursor: pointer;
+  transition: all 0.25s ease;
+  white-space: nowrap;
+}
+.btn-primary {
+  background: var(--red);
+  color: var(--white);
+  border-color: var(--red);
+}
+.btn-primary:hover {
+  background: transparent;
+  color: var(--red);
+}
+.btn-ghost {
+  background: transparent;
+  color: var(--light);
+  border-color: var(--border-dark);
+}
+.btn-ghost:hover {
+  border-color: rgba(255,255,255,0.2);
+  color: var(--white);
+}
+.btn-light {
+  background: var(--white);
+  color: var(--dark);
+  border-color: var(--white);
+}
+.btn-light:hover {
+  background: var(--green);
+  border-color: var(--green);
+}
+.btn svg { width: 14px; height: 14px; flex-shrink: 0; }
+
+.hero-scroll {
+  position: absolute; bottom: 40px; right: 48px;
+  display: flex; flex-direction: column; align-items: center; gap: 8px;
+  opacity: 0;
+  animation: fadeIn 1s ease 1.2s forwards;
+  z-index: 1;
+}
+.hero-scroll span {
+  font-size: 10px; letter-spacing: 0.14em; text-transform: uppercase;
+  color: var(--mid); writing-mode: vertical-rl;
+}
+.scroll-line {
+  width: 1px; height: 60px;
+  background: linear-gradient(to bottom, var(--mid), transparent);
+}
+
+/* ── SECTION BASE ── */
+section { padding: 120px 48px; }
+.section-inner { max-width: 1200px; margin: 0 auto; }
+
+.section-eyebrow {
+  display: flex; align-items: center; gap: 12px;
+  margin-bottom: 56px;
+}
+.eyebrow-dot { width: 6px; height: 6px; background: var(--red); border-radius: 50%; flex-shrink: 0; }
+.eyebrow-label {
+  font-size: 11px; font-weight: 400; letter-spacing: 0.16em;
+  text-transform: uppercase; color: var(--red);
+}
+.eyebrow-num {
+  font-size: 11px; font-weight: 300; letter-spacing: 0.1em;
+  color: var(--mid); margin-left: auto;
+}
+
+.section-title {
+  font-family: var(--font-display);
+  font-size: clamp(28px, 4vw, 52px);
+  line-height: 1.1;
+  font-weight: 400;
+  letter-spacing: -0.02em;
+  color: var(--white);
+  margin-bottom: 24px;
+}
+.section-title em { font-style: italic; color: var(--red); }
+
+.section-body {
+  font-size: 15px; font-weight: 300;
+  line-height: 1.75;
+  color: var(--mid);
+  max-width: 640px;
+}
+
+/* ── INTRO ── */
+.intro { background: var(--dark); border-top: 1px solid var(--border-dark); }
+
+.intro-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 80px;
+  align-items: start;
+}
+
+.intro-left {}
+.intro-right { padding-top: 16px; }
+
+.intro-stats {
+  display: grid; grid-template-columns: 1fr 1fr;
+  gap: 1px;
+  background: var(--border-dark);
+  border: 1px solid var(--border-dark);
+  border-radius: var(--r-lg);
+  overflow: hidden;
+  margin-top: 48px;
+}
+.stat-item {
+  background: var(--dark-2);
+  padding: 32px 28px;
+}
+.stat-num {
+  font-family: var(--font-display);
+  font-size: 40px;
+  font-weight: 400;
+  color: var(--white);
+  line-height: 1;
+  margin-bottom: 8px;
+}
+.stat-num span { color: var(--red); }
+.stat-label {
+  font-size: 12px; font-weight: 300; letter-spacing: 0.06em;
+  color: var(--mid);
+  line-height: 1.5;
+}
+
+.intro-pillars {
+  display: flex; flex-direction: column; gap: 0;
+  border: 1px solid var(--border-dark);
+  border-radius: var(--r-lg);
+  overflow: hidden;
+}
+.pillar {
+  display: flex; align-items: center; gap: 20px;
+  padding: 20px 24px;
+  border-bottom: 1px solid var(--border-dark);
+  transition: background 0.2s;
+}
+.pillar:last-child { border-bottom: none; }
+.pillar:hover { background: rgba(255,255,255,0.02); }
+.pillar-icon {
+  width: 36px; height: 60px;
+  border: 1px solid var(--border-dark);
+  border-radius: var(--r-pill);
+  display: flex; align-items: center; justify-content: center;
+  flex-shrink: 0;
+  background: rgba(255,255,255,0.02);
+}
+.pillar-icon svg { width: 16px; height: 16px; color: var(--light); }
+.pillar-text { font-size: 13px; font-weight: 300; color: var(--light); line-height: 1.5; }
+.pillar-text strong { font-weight: 500; color: var(--white); display: block; margin-bottom: 2px; font-size: 13px; }
+
+/* ── WHY LOCAL ── */
+.why-local {
+  background: var(--dark-2);
+  border-top: 1px solid var(--border-dark);
+  position: relative; overflow: hidden;
+}
+.why-local::before {
+  content: '';
+  position: absolute; top: 0; right: 0;
+  width: 400px; height: 400px;
+  background: radial-gradient(circle at top right, rgba(242,84,64,0.05), transparent 70%);
+  pointer-events: none;
+}
+
+.why-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 80px;
+  align-items: center;
+}
+.why-right {}
+
+.insight-cards {
+  display: flex; flex-direction: column; gap: 12px;
+}
+.insight-card {
+  display: flex; align-items: flex-start; gap: 16px;
+  padding: 24px;
+  border: 1px solid var(--border-dark);
+  border-radius: var(--r-md);
+  background: rgba(255,255,255,0.02);
+  transition: all 0.3s ease;
+}
+.insight-card:hover {
+  border-color: rgba(242,84,64,0.2);
+  background: rgba(242,84,64,0.03);
+}
+.insight-capsule {
+  width: 40px; height: 64px;
+  border: 1px solid var(--border-dark);
+  border-radius: var(--r-pill);
+  display: flex; align-items: center; justify-content: center;
+  flex-shrink: 0;
+  background: var(--dark-3);
+}
+.insight-capsule svg { width: 16px; height: 16px; color: var(--red); }
+.insight-content {}
+.insight-title { font-size: 14px; font-weight: 500; color: var(--white); margin-bottom: 6px; }
+.insight-body { font-size: 12px; font-weight: 300; color: var(--mid); line-height: 1.6; }
+
+/* ── FOCUS AREAS ── */
+.focus { background: var(--dark); border-top: 1px solid var(--border-dark); }
+
+.focus-header {
+  display: flex; justify-content: space-between;
+  align-items: flex-end;
+  margin-bottom: 64px;
+}
+
+.focus-cards {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 12px;
+}
+.focus-card {
+  border: 1px solid var(--border-dark);
+  border-radius: var(--r-lg);
+  padding: 36px 32px;
+  background: var(--dark-2);
+  position: relative; overflow: hidden;
+  transition: all 0.35s ease;
+}
+.focus-card::after {
+  content: '';
+  position: absolute; inset: 0;
+  background: radial-gradient(circle at 50% 0%, rgba(242,84,64,0.06), transparent 60%);
+  opacity: 0;
+  transition: opacity 0.35s;
+}
+.focus-card:hover { border-color: rgba(242,84,64,0.25); transform: translateY(-4px); }
+.focus-card:hover::after { opacity: 1; }
+
+.focus-card-icon {
+  width: 44px; height: 72px;
+  border: 1px solid var(--border-dark);
+  border-radius: var(--r-pill);
+  display: flex; align-items: center; justify-content: center;
+  margin-bottom: 28px;
+  background: rgba(255,255,255,0.02);
+}
+.focus-card-icon svg { width: 18px; height: 18px; color: var(--light); }
+.focus-card:hover .focus-card-icon svg { color: var(--red); }
+.focus-card:hover .focus-card-icon { border-color: rgba(242,84,64,0.2); }
+.focus-card-num {
+  font-size: 10px; letter-spacing: 0.14em; text-transform: uppercase;
+  color: var(--mid); margin-bottom: 12px;
+}
+.focus-card-title { font-size: 17px; font-weight: 400; color: var(--white); margin-bottom: 12px; }
+.focus-card-body { font-size: 13px; font-weight: 300; color: var(--mid); line-height: 1.65; }
+
+/* ── ACTIVITIES ── */
+.activities {
+  background: var(--dark-2);
+  border-top: 1px solid var(--border-dark);
+}
+
+.timeline { display: flex; flex-direction: column; gap: 0; margin-top: 64px; }
+.timeline-item {
+  display: grid;
+  grid-template-columns: 180px 1px 1fr;
+  gap: 0 32px;
+  padding: 40px 0;
+  border-bottom: 1px solid var(--border-dark);
+  align-items: start;
+}
+.timeline-item:first-child { padding-top: 0; }
+.timeline-item:last-child { border-bottom: none; padding-bottom: 0; }
+.tl-phase {
+  font-size: 11px; letter-spacing: 0.12em; text-transform: uppercase;
+  color: var(--mid); padding-top: 4px; font-weight: 400;
+}
+.tl-line { background: var(--border-dark); position: relative; }
+.tl-line::before {
+  content: '';
+  position: absolute; top: 8px; left: 50%;
+  transform: translateX(-50%);
+  width: 5px; height: 5px;
+  background: var(--red);
+  border-radius: 50%;
+}
+.tl-content {}
+.tl-title { font-size: 18px; font-weight: 400; color: var(--white); margin-bottom: 12px; }
+.tl-items {
+  display: flex; flex-direction: column; gap: 8px;
+}
+.tl-item {
+  display: flex; align-items: center; gap: 10px;
+  font-size: 13px; font-weight: 300; color: var(--mid);
+}
+.tl-dot { width: 4px; height: 4px; background: var(--red); border-radius: 50%; flex-shrink: 0; }
+
+/* ── DELIVERABLES ── */
+.deliverables { background: var(--dark); border-top: 1px solid var(--border-dark); }
+
+.deliv-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 12px;
+  margin-top: 64px;
+}
+.deliv-item {
+  padding: 28px 24px;
+  border: 1px solid var(--border-dark);
+  border-radius: var(--r-md);
+  background: rgba(255,255,255,0.015);
+  transition: all 0.25s;
+}
+.deliv-item:hover {
+  border-color: rgba(210,239,201,0.2);
+  background: rgba(210,239,201,0.03);
+}
+.deliv-icon {
+  width: 36px; height: 56px;
+  border: 1px solid var(--border-dark);
+  border-radius: var(--r-pill);
+  display: flex; align-items: center; justify-content: center;
+  margin-bottom: 20px;
+  background: var(--dark-2);
+}
+.deliv-icon svg { width: 15px; height: 15px; color: var(--green); }
+.deliv-title { font-size: 14px; font-weight: 500; color: var(--white); margin-bottom: 6px; }
+.deliv-body { font-size: 12px; font-weight: 300; color: var(--mid); line-height: 1.6; }
+
+/* ── PREP ── */
+.prep {
+  background: var(--dark-2);
+  border-top: 1px solid var(--border-dark);
+}
+.prep-steps {
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  gap: 12px;
+  margin-top: 64px;
+}
+.prep-step {
+  padding: 28px 20px;
+  border: 1px solid var(--border-dark);
+  border-radius: var(--r-md);
+  background: var(--dark);
+  text-align: center;
+  transition: all 0.3s;
+}
+.prep-step:hover {
+  border-color: rgba(242,84,64,0.2);
+  transform: translateY(-3px);
+}
+.prep-step-num {
+  font-family: var(--font-display);
+  font-size: 28px; font-weight: 400;
+  color: rgba(255,255,255,0.08);
+  margin-bottom: 12px;
+}
+.prep-step-icon {
+  width: 36px; height: 56px;
+  border: 1px solid var(--border-dark);
+  border-radius: var(--r-pill);
+  display: flex; align-items: center; justify-content: center;
+  margin: 0 auto 16px;
+}
+.prep-step-icon svg { width: 15px; height: 15px; color: var(--light); }
+.prep-step-title { font-size: 13px; font-weight: 500; color: var(--white); line-height: 1.4; }
+
+/* ── LIMITED ── */
+.limited {
+  background: var(--dark);
+  border-top: 1px solid var(--border-dark);
+  position: relative; overflow: hidden;
+}
+.limited::before {
+  content: '';
+  position: absolute; inset: 0;
+  background: radial-gradient(ellipse at 50% 0%, rgba(242,84,64,0.04) 0%, transparent 60%);
+  pointer-events: none;
+}
+
+.limited-inner {
+  max-width: 700px; margin: 0 auto; text-align: center;
+}
+.limited-badge {
+  display: inline-flex; align-items: center; gap: 8px;
+  border: 1px solid rgba(242,84,64,0.3);
+  border-radius: var(--r-pill);
+  padding: 6px 16px;
+  margin-bottom: 32px;
+  background: rgba(242,84,64,0.05);
+}
+.limited-badge span { font-size: 11px; letter-spacing: 0.12em; text-transform: uppercase; color: var(--red); }
+.badge-dot { width: 5px; height: 5px; background: var(--red); border-radius: 50%; animation: pulse 2s infinite; }
+
+@keyframes pulse {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.3; }
+}
+
+.limited-nums {
+  display: flex; justify-content: center; gap: 32px; margin-top: 56px;
+}
+.lnum {
+  text-align: center;
+}
+.lnum-n {
+  font-family: var(--font-display);
+  font-size: 64px; line-height: 1;
+  color: var(--white); margin-bottom: 8px;
+}
+.lnum-n span { color: var(--red); }
+.lnum-l { font-size: 12px; letter-spacing: 0.08em; color: var(--mid); }
+.lnum-div { width: 1px; background: var(--border-dark); align-self: stretch; }
+
+/* ── PRICING ── */
+.pricing {
+  background: var(--dark-2);
+  border-top: 1px solid var(--border-dark);
+}
+
+.pricing-card {
+  max-width: 640px; margin: 0 auto;
+  border: 1px solid var(--border-dark);
+  border-radius: var(--r-xl);
+  overflow: hidden;
+  background: var(--dark);
+  margin-top: 64px;
+}
+.pricing-header {
+  padding: 40px 48px 32px;
+  border-bottom: 1px solid var(--border-dark);
+  background: var(--dark-3);
+  position: relative;
+}
+.pricing-header::after {
+  content: '';
+  position: absolute; inset: 0;
+  background: radial-gradient(ellipse at 50% 0%, rgba(242,84,64,0.06), transparent 60%);
+  pointer-events: none;
+}
+.pricing-badge-wrap { margin-bottom: 20px; }
+.pricing-badge {
+  display: inline-flex; align-items: center; gap: 6px;
+  border: 1px solid rgba(210,239,201,0.3);
+  border-radius: var(--r-pill);
+  padding: 5px 14px;
+  background: rgba(210,239,201,0.05);
+}
+.pricing-badge span { font-size: 10px; letter-spacing: 0.14em; text-transform: uppercase; color: var(--green); }
+
+.pricing-title {
+  font-family: var(--font-display);
+  font-size: 24px; font-weight: 400;
+  color: var(--white); margin-bottom: 8px;
+  position: relative;
+}
+.pricing-sub { font-size: 13px; font-weight: 300; color: var(--mid); position: relative; }
+
+.pricing-body { padding: 40px 48px; }
+
+.cost-breakdown { margin-bottom: 32px; }
+.cost-label {
+  font-size: 11px; letter-spacing: 0.12em; text-transform: uppercase;
+  color: var(--mid); margin-bottom: 20px;
+}
+.cost-lines { display: flex; flex-direction: column; gap: 0; }
+.cost-line {
+  display: flex; justify-content: space-between; align-items: center;
+  padding: 14px 0;
+  border-bottom: 1px solid var(--border-dark);
+  font-size: 13px;
+}
+.cost-line:last-child { border-bottom: none; }
+.cost-name { font-weight: 300; color: var(--mid); }
+.cost-val { font-weight: 400; color: var(--light); font-size: 13px; }
+
+.cost-subtotal {
+  display: flex; justify-content: space-between;
+  padding: 16px 20px;
+  background: rgba(255,255,255,0.03);
+  border-radius: var(--r-sm);
+  margin-top: 8px;
+  margin-bottom: 12px;
+}
+.cost-subtotal-label { font-size: 12px; color: var(--mid); }
+.cost-subtotal-val { font-size: 14px; font-weight: 500; color: var(--white); }
+
+.cost-fee {
+  display: flex; justify-content: space-between; align-items: center;
+  padding: 16px 20px;
+  border: 1px solid rgba(210,239,201,0.15);
+  border-radius: var(--r-sm);
+  background: rgba(210,239,201,0.03);
+  margin-bottom: 24px;
+}
+.cost-fee-left {}
+.cost-fee-label { font-size: 12px; font-weight: 500; color: var(--green); }
+.cost-fee-note { font-size: 11px; font-weight: 300; color: var(--mid); margin-top: 2px; }
+.cost-fee-val { font-size: 18px; font-weight: 500; color: var(--green); }
+
+.cost-total {
+  display: flex; justify-content: space-between; align-items: center;
+  padding: 24px 24px;
+  background: var(--red);
+  border-radius: var(--r-md);
+}
+.cost-total-label { font-size: 13px; font-weight: 400; color: rgba(255,255,255,0.8); }
+.cost-total-val {
+  font-family: var(--font-display);
+  font-size: 32px; font-weight: 400; color: var(--white);
+}
+
+/* ── ABOUT ── */
+.about {
+  background: var(--dark);
+  border-top: 1px solid var(--border-dark);
+}
+.about-grid {
+  display: grid;
+  grid-template-columns: 1fr 1.2fr;
+  gap: 80px;
+  align-items: center;
+}
+.about-photo-wrap {
+  position: relative;
+}
+.about-photo-frame {
+  width: 100%; aspect-ratio: 3/4;
+  border: 1px solid var(--border-dark);
+  border-radius: var(--r-xl);
+  overflow: hidden;
+  background: var(--dark-3);
+  position: relative;
+}
+.about-photo-placeholder {
+  width: 100%; height: 100%;
+  display: flex; flex-direction: column; align-items: center; justify-content: center;
+  gap: 12px;
+  color: var(--mid);
+}
+.about-photo-placeholder svg { width: 32px; height: 32px; opacity: 0.3; }
+.about-photo-placeholder span { font-size: 11px; letter-spacing: 0.1em; text-transform: uppercase; opacity: 0.4; }
+.about-photo-accent {
+  position: absolute; bottom: -20px; right: -20px;
+  width: 80px; height: 80px;
+  border: 1px solid var(--border-dark);
+  border-radius: var(--r-lg);
+  background: var(--dark-2);
+  display: flex; align-items: center; justify-content: center;
+}
+.about-photo-accent svg { width: 28px; height: 28px; color: var(--red); }
+
+.about-name {
+  font-family: var(--font-display);
+  font-size: 36px; font-weight: 400;
+  color: var(--white);
+  margin-bottom: 6px;
+}
+.about-role {
+  font-size: 13px; font-weight: 300; letter-spacing: 0.06em;
+  color: var(--red);
+  margin-bottom: 32px;
+}
+.about-bio {
+  font-size: 15px; font-weight: 300; color: var(--mid);
+  line-height: 1.8;
+  margin-bottom: 40px;
+}
+.about-tags {
+  display: flex; flex-wrap: wrap; gap: 8px;
+  margin-bottom: 40px;
+}
+.about-tag {
+  font-size: 11px; letter-spacing: 0.06em;
+  color: var(--light);
+  border: 1px solid var(--border-dark);
+  padding: 6px 12px;
+  border-radius: var(--r-pill);
+}
+
+/* ── CTA FINAL ── */
+.cta-final {
+  background: var(--dark-2);
+  border-top: 1px solid var(--border-dark);
+  text-align: center;
+  position: relative; overflow: hidden;
+}
+.cta-final::before {
+  content: '';
+  position: absolute; inset: 0;
+  background: radial-gradient(ellipse at 50% 50%, rgba(242,84,64,0.06) 0%, transparent 60%);
+  pointer-events: none;
+}
+.cta-final .section-inner { position: relative; }
+
+.cta-final-title {
+  font-family: var(--font-display);
+  font-size: clamp(28px, 4vw, 52px);
+  line-height: 1.1;
+  font-weight: 400;
+  color: var(--white);
+  margin: 0 auto 20px;
+  max-width: 720px;
+}
+.cta-final-title em { font-style: italic; color: var(--red); }
+.cta-final-sub {
+  font-size: 14px; font-weight: 300; color: var(--mid);
+  max-width: 400px; margin: 0 auto 48px;
+  line-height: 1.7;
+}
+.cta-final-actions {
+  display: flex; gap: 12px; justify-content: center; flex-wrap: wrap;
+  margin-bottom: 80px;
+}
+
+.footer-line {
+  border-top: 1px solid var(--border-dark);
+  padding-top: 40px;
+  display: flex; justify-content: space-between; align-items: center;
+  flex-wrap: wrap; gap: 16px;
+}
+.footer-brand { font-size: 12px; letter-spacing: 0.08em; color: var(--mid); }
+.footer-meta { font-size: 12px; color: var(--mid); }
+.footer-logo {
+  width: 28px; height: 28px;
+  border: 1px solid var(--border-dark);
+  border-radius: 6px;
+  display: flex; align-items: center; justify-content: center;
+}
+.footer-logo svg { width: 12px; height: 12px; color: var(--red); }
+
+/* ── DIVIDER ── */
+.divider {
+  height: 1px;
+  background: linear-gradient(to right, transparent, var(--border-dark) 20%, var(--border-dark) 80%, transparent);
+  margin: 0 48px;
+}
+
+/* ── ANIMATIONS ── */
+@keyframes fadeUp {
+  from { opacity: 0; transform: translateY(24px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+.reveal {
+  opacity: 0;
+  transform: translateY(20px);
+  transition: opacity 0.7s ease, transform 0.7s ease;
+}
+.reveal.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+.reveal-delay-1 { transition-delay: 0.1s; }
+.reveal-delay-2 { transition-delay: 0.2s; }
+.reveal-delay-3 { transition-delay: 0.3s; }
+.reveal-delay-4 { transition-delay: 0.4s; }
+.reveal-delay-5 { transition-delay: 0.5s; }
+
+/* ── RESPONSIVE ── */
+@media (max-width: 1024px) {
+  nav { padding: 16px 24px; }
+  .nav-center { display: none; }
+  section { padding: 80px 24px; }
+  .hero { padding: 0 24px 64px; }
+  .hero-scroll { right: 24px; }
+  .intro-grid,
+  .why-grid,
+  .about-grid { grid-template-columns: 1fr; gap: 48px; }
+  .focus-cards { grid-template-columns: 1fr 1fr; }
+  .prep-steps { grid-template-columns: repeat(3, 1fr); }
+  .deliv-grid { grid-template-columns: 1fr 1fr; }
+  .timeline-item { grid-template-columns: 120px 1px 1fr; }
+}
+
+@media (max-width: 640px) {
+  section { padding: 60px 20px; }
+  .hero { padding: 0 20px 56px; }
+  .focus-cards { grid-template-columns: 1fr; }
+  .prep-steps { grid-template-columns: 1fr 1fr; }
+  .deliv-grid { grid-template-columns: 1fr; }
+  .timeline-item { grid-template-columns: 1fr; gap: 12px; }
+  .tl-line { display: none; }
+  .pricing-body { padding: 28px 24px; }
+  .pricing-header { padding: 28px 24px; }
+  .limited-nums { flex-direction: column; gap: 24px; }
+  .lnum-div { width: 60px; height: 1px; margin: 0 auto; }
+  .focus-header { flex-direction: column; gap: 16px; align-items: flex-start; }
+}
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <div class="nav-logo">
+    <div class="nav-logo-mark">
+      <!-- Replace with Airplane logo -->
+      <svg viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <path d="M2 8L14 2L10 8L14 14L2 8Z" stroke="#F25440" stroke-width="1" stroke-linejoin="round" fill="none"/>
+      </svg>
+    </div>
+    <span class="nav-brand">Airplane × NEDGEX</span>
+  </div>
+  <nav class="nav-center">
+    <a href="#why">Why</a>
+    <a href="#focus">Focus</a>
+    <a href="#activities">Activities</a>
+    <a href="#pricing">Investment</a>
+    <a href="#about">About</a>
+  </nav>
+  <a href="https://wa.me/5548999558413" class="nav-cta" target="_blank">Get in Touch</a>
+</nav>
+
+
+<!-- HERO -->
+<section class="hero" id="top">
+  <div class="hero-bg">
+    <div class="hero-grid"></div>
+    <div class="hero-lines"></div>
+    <div class="hero-glow"></div>
+    <div class="hero-glow-2"></div>
+    <div class="hero-capsule hc1"></div>
+    <div class="hero-capsule hc2"></div>
+    <div class="hero-capsule hc3"></div>
+    <div class="hero-capsule hc4"></div>
+  </div>
+
+  <div class="hero-content">
+    <div class="hero-eyebrow">
+      <span class="eyebrow-line"></span>
+      <span class="eyebrow-text">Strategic Representation Proposal</span>
+    </div>
+
+    <h1 class="hero-title">
+      Unlocking Strategic<br>
+      Opportunities for<br>
+      <em>NEDGEX</em> in Brazil
+    </h1>
+
+    <p class="hero-sub">
+      Connecting NEDGEX to the Brazilian innovation ecosystem, emerging technologies, strategic partners and high-value opportunities at Web Summit Rio 2026.
+    </p>
+
+    <div class="hero-tags">
+      <span class="tag">Strategic Representation</span>
+      <span class="tag">Innovation Scouting</span>
+      <span class="tag">Ecosystem Access</span>
+      <span class="tag">Web Summit Rio 2026</span>
+    </div>
+
+    <div class="hero-actions">
+      <a href="https://wa.me/5548999558413" class="btn btn-primary" target="_blank">
+        <svg viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/><path d="M12 0C5.373 0 0 5.373 0 12c0 2.123.555 4.116 1.528 5.845L0 24l6.335-1.508A11.954 11.954 0 0012 24c6.627 0 12-5.373 12-12S18.627 0 12 0zm0 22c-1.869 0-3.618-.487-5.13-1.34l-.368-.214-3.762.895.946-3.653-.234-.381A9.944 9.944 0 012 12C2 6.477 6.477 2 12 2s10 4.477 10 10-4.477 10-10 10z"/></svg>
+        WhatsApp
+      </a>
+      <a href="https://www.linkedin.com/in/giulia-softlanding?utm_source=share_via&utm_content=profile&utm_medium=member_ios" class="btn btn-ghost" target="_blank">
+        <svg viewBox="0 0 24 24" fill="currentColor"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg>
+        LinkedIn
+      </a>
+    </div>
+  </div>
+
+  <div class="hero-scroll">
+    <div class="scroll-line"></div>
+    <span>Scroll</span>
+  </div>
+</section>
+
+
+<!-- INTRO -->
+<section class="intro" id="why">
+  <div class="section-inner">
+    <div class="intro-grid">
+      <div class="intro-left">
+        <div class="section-eyebrow reveal">
+          <span class="eyebrow-dot"></span>
+          <span class="eyebrow-label">Context</span>
+          <span class="eyebrow-num">01</span>
+        </div>
+        <h2 class="section-title reveal reveal-delay-1">
+          Why Web Summit Rio<br><em>Matters</em> for NEDGEX
+        </h2>
+        <p class="section-body reveal reveal-delay-2">
+          Web Summit Rio has become Latin America's most significant innovation event — a convergence point for global startups, venture capital, corporate innovation leaders, and emerging technology builders. For international companies, it represents a rare window into Brazil's rapidly evolving ecosystem.
+        </p>
+        <br>
+        <p class="section-body reveal reveal-delay-3">
+          In 2026, the event is expected to host thousands of startups, investors and decision-makers across AI, IoT, industrial innovation, venture building, and platform economies. Being present — and strategically present — is the difference between a networking event and a genuine business opportunity.
+        </p>
+
+        <div class="intro-stats reveal reveal-delay-4">
+          <div class="stat-item">
+            <div class="stat-num">70<span>k+</span></div>
+            <div class="stat-label">Attendees expected in 2026</div>
+          </div>
+          <div class="stat-item">
+            <div class="stat-num">150<span>+</span></div>
+            <div class="stat-label">Countries represented</div>
+          </div>
+          <div class="stat-item">
+            <div class="stat-num">2<span>k+</span></div>
+            <div class="stat-label">Startups on the floor</div>
+          </div>
+          <div class="stat-item">
+            <div class="stat-num">500<span>+</span></div>
+            <div class="stat-label">Investors & partners</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="intro-right">
+        <div class="intro-pillars reveal reveal-delay-2">
+          <div class="pillar">
+            <div class="pillar-icon">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.2">
+                <circle cx="12" cy="12" r="3"/><path d="M12 2v3M12 19v3M2 12h3M19 12h3M4.93 4.93l2.12 2.12M16.95 16.95l2.12 2.12M4.93 19.07l2.12-2.12M16.95 7.05l2.12-2.12"/>
+              </svg>
+            </div>
+            <div class="pillar-text">
+              <strong>Artificial Intelligence & Deep Tech</strong>
+              Frontier models, applied AI, industrial automation and data infrastructure.
+            </div>
+          </div>
+          <div class="pillar">
+            <div class="pillar-icon">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.2">
+                <path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"/>
+              </svg>
+            </div>
+            <div class="pillar-text">
+              <strong>Industrial Innovation & IoT</strong>
+              Smart manufacturing, connected infrastructure and industrial digitization.
+            </div>
+          </div>
+          <div class="pillar">
+            <div class="pillar-icon">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.2">
+                <path d="M17 21v-2a4 4 0 00-4-4H5a4 4 0 00-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 00-3-3.87M16 3.13a4 4 0 010 7.75"/>
+              </svg>
+            </div>
+            <div class="pillar-text">
+              <strong>Startups & Accelerators</strong>
+              High-growth ventures, accelerator networks and early-stage deal flow.
+            </div>
+          </div>
+          <div class="pillar">
+            <div class="pillar-icon">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.2">
+                <rect x="2" y="7" width="20" height="14" rx="2"/><path d="M16 21V5a2 2 0 00-2-2h-4a2 2 0 00-2 2v16"/>
+              </svg>
+            </div>
+            <div class="pillar-text">
+              <strong>Corporate Innovation</strong>
+              Open innovation programs, enterprise partnerships and pilot opportunities.
+            </div>
+          </div>
+          <div class="pillar">
+            <div class="pillar-icon">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.2">
+                <polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/>
+              </svg>
+            </div>
+            <div class="pillar-text">
+              <strong>Venture Building</strong>
+              Studio models, co-creation frameworks and ecosystem-based growth.
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- WHY LOCAL -->
+<section class="why-local" id="representation">
+  <div class="section-inner">
+    <div class="why-grid">
+      <div class="why-left">
+        <div class="section-eyebrow reveal">
+          <span class="eyebrow-dot"></span>
+          <span class="eyebrow-label">Local Intelligence</span>
+          <span class="eyebrow-num">02</span>
+        </div>
+        <h2 class="section-title reveal reveal-delay-1">
+          Turning Event Participation into<br><em>Strategic Ecosystem</em> Access
+        </h2>
+        <p class="section-body reveal reveal-delay-2">
+          The Brazilian innovation ecosystem is deeply relationship-driven. Meaningful connections don't happen on the main stage — they happen in side events, informal dinners, and ecosystem gatherings that are invisible without local knowledge.
+        </p>
+        <br>
+        <p class="section-body reveal reveal-delay-3">
+          Strategic local representation transforms a passive event presence into an active pipeline of partnerships, intelligence and opportunities — tailored specifically to NEDGEX's priorities.
+        </p>
+      </div>
+      <div class="why-right">
+        <div class="insight-cards">
+          <div class="insight-card reveal reveal-delay-1">
+            <div class="insight-capsule">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.2">
+                <circle cx="11" cy="11" r="8"/><path d="M21 21l-4.35-4.35"/>
+              </svg>
+            </div>
+            <div class="insight-content">
+              <div class="insight-title">Relationship-First Culture</div>
+              <div class="insight-body">Brazil's ecosystem is built on trust and personal connections. Cold networking is rarely effective — warm introductions and shared context open doors.</div>
+            </div>
+          </div>
+          <div class="insight-card reveal reveal-delay-2">
+            <div class="insight-capsule">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.2">
+                <path d="M17 21v-2a4 4 0 00-4-4H5a4 4 0 00-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 00-3-3.87M16 3.13a4 4 0 010 7.75"/>
+              </svg>
+            </div>
+            <div class="insight-content">
+              <div class="insight-title">Side Events Are Where It Happens</div>
+              <div class="insight-body">The highest-value conversations at Web Summit happen outside the official program — in curated side events, meetups and informal sessions.</div>
+            </div>
+          </div>
+          <div class="insight-card reveal reveal-delay-3">
+            <div class="insight-capsule">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.2">
+                <path d="M3 9l9-7 9 7v11a2 2 0 01-2 2H5a2 2 0 01-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/>
+              </svg>
+            </div>
+            <div class="insight-content">
+              <div class="insight-title">Local Ecosystem Knowledge</div>
+              <div class="insight-body">Knowing which startups, accelerators and corporates align with NEDGEX's goals requires deep ecosystem awareness — not just a participant badge.</div>
+            </div>
+          </div>
+          <div class="insight-card reveal reveal-delay-4">
+            <div class="insight-capsule">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.2">
+                <polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/>
+              </svg>
+            </div>
+            <div class="insight-content">
+              <div class="insight-title">Strategy Before Networking</div>
+              <div class="insight-body">Networking without a strategic framework generates noise, not signal. A focused approach ensures every interaction advances NEDGEX's specific objectives.</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<!-- FOCUS AREAS -->
+<section class="focus" id="focus">
+  <div class="section-inner">
+    <div class="focus-header">
+      <div>
+        <div class="section-eyebrow reveal" style="margin-bottom:24px">
+          <span class="eyebrow-dot"></span>
+          <span class="eyebrow-label">Strategic Focus Areas</span>
+          <span class="eyebrow-num">03</span>
+        </div>
+        <h2 class="section-title reveal reveal-delay-1" style="margin-bottom:0">
+          Six Dimensions of<br><em>Strategic Presence</em>
+        </h2>
+      </div>
+      <p class="section-body reveal reveal-delay-2" style="max-width:300px;text-align:right">
+        Each focus area is designed to generate concrete value for NEDGEX — from intelligence to relationships to pipeline.
+      </p>
+    </div>
+
+    <div class="focus-cards">
+      <div class="focus-card reveal reveal-delay-1">
+        <div class="focus-card-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.2">
+            <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z"/><circle cx="12" cy="10" r="3"/>
+          </svg>
+        </div>
+        <div class="focus-card-num">01</div>
+        <div class="focus-card-title">Ecosystem Mapping</div>
+        <div class="focus-card-body">Identifying the key players, accelerators, hubs and startups relevant to NEDGEX's strategic interests before and during the event.</div>
+      </div>
+      <div class="focus-card reveal reveal-delay-2">
+        <div class="focus-card-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.2">
+            <circle cx="11" cy="11" r="8"/><path d="M21 21l-4.35-4.35"/>
+          </svg>
+        </div>
+        <div class="focus-card-num">02</div>
+        <div class="focus-card-title">Innovation Scouting</div>
+        <div class="focus-card-body">Actively scanning for emerging technologies, business models and ventures aligned with NEDGEX's innovation agenda.</div>
+      </div>
+      <div class="focus-card reveal reveal-delay-3">
+        <div class="focus-card-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.2">
+            <path d="M17 21v-2a4 4 0 00-4-4H5a4 4 0 00-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 00-3-3.87M16 3.13a4 4 0 010 7.75"/>
+          </svg>
+        </div>
+        <div class="focus-card-num">03</div>
+        <div class="focus-card-title">Strategic Networking</div>
+        <div class="focus-card-body">Cultivating high-value connections with decision-makers, partners and ecosystem builders — with intentionality and follow-through.</div>
+      </div>
+      <div class="focus-card reveal reveal-delay-1">
+        <div class="focus-card-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.2">
+            <rect x="2" y="3" width="20" height="14" rx="2"/><path d="M8 21h8M12 17v4"/>
+          </svg>
+        </div>
+        <div class="focus-card-num">04</div>
+        <div class="focus-card-title">Conferences & Insights</div>
+        <div class="focus-card-body">Attending and synthesizing key talks, panels and debates — filtering the signal from the noise to deliver actionable insights.</div>
+      </div>
+      <div class="focus-card reveal reveal-delay-2">
+        <div class="focus-card-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.2">
+            <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/>
+          </svg>
+        </div>
+        <div class="focus-card-num">05</div>
+        <div class="focus-card-title">Side Events</div>
+        <div class="focus-card-body">Accessing curated side events, ecosystem dinners and exclusive gatherings where the most impactful conversations happen.</div>
+      </div>
+      <div class="focus-card reveal reveal-delay-3">
+        <div class="focus-card-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.2">
+            <path d="M14.5 10c-.83 0-1.5-.67-1.5-1.5v-5c0-.83.67-1.5 1.5-1.5s1.5.67 1.5 1.5v5c0 .83-.67 1.5-1.5 1.5z"/><path d="M20.5 10H19V8.5c0-.83.67-1.5 1.5-1.5s1.5.67 1.5 1.5-.67 1.5-1.5 1.5z"/><path d="M9.5 14c.83 0 1.5.67 1.5 1.5v5c0 .83-.67 1.5-1.5 1.5S8 21.33 8 20.5v-5c0-.83.67-1.5 1.5-1.5z"/><path d="M3.5 14H5v1.5c0 .83-.67 1.5-1.5 1.5S2 16.33 2 15.5 2.67 14 3.5 14z"/><path d="M14 14.5c0-.83.67-1.5 1.5-1.5h5c.83 0 1.5.67 1.5 1.5s-.67 1.5-1.5 1.5h-5c-.83 0-1.5-.67-1.5-1.5z"/><path d="M15.5 19H14v1.5c0 .83.67 1.5 1.5 1.5s1.5-.67 1.5-1.5-.67-1.5-1.5-1.5z"/><path d="M10 9.5C10 8.67 9.33 8 8.5 8h-5C2.67 8 2 8.67 2 9.5S2.67 11 3.5 11h5c.83 0 1.5-.67 1.5-1.5z"/><path d="M8.5 5H10V3.5C10 2.67 9.33 2 8.5 2S7 2.67 7 3.5 7.67 5 8.5 5z"/>
+          </svg>
+        </div>
+        <div class="focus-card-num">06</div>
+        <div class="focus-card-title">Optional: Content Creation</div>
+        <div class="focus-card-body">Live documentation, LinkedIn posts and event coverage showcasing NEDGEX's presence and thought leadership at Web Summit Rio.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<!-- ACTIVITIES -->
+<section class="activities" id="activities">
+  <div class="section-inner">
+    <div class="section-eyebrow reveal">
+      <span class="eyebrow-dot"></span>
+      <span class="eyebrow-label">Main Activities</span>
+      <span class="eyebrow-num">04</span>
+    </div>
+    <h2 class="section-title reveal reveal-delay-1">
+      What Will Be Done During<br><em>Web Summit Rio</em>
+    </h2>
+
+    <div class="timeline">
+      <div class="timeline-item reveal">
+        <div class="tl-phase">Day 1</div>
+        <div class="tl-line"></div>
+        <div class="tl-content">
+          <div class="tl-title">Arrival & Ecosystem Activation</div>
+          <div class="tl-items">
+            <div class="tl-item"><span class="tl-dot"></span>Badge collection and venue orientation</div>
+            <div class="tl-item"><span class="tl-dot"></span>Priority meetings with pre-identified targets</div>
+            <div class="tl-item"><span class="tl-dot"></span>Activation of ecosystem contacts and warm introductions</div>
+            <div class="tl-item"><span class="tl-dot"></span>Attendance at opening keynotes and horizon sessions</div>
+          </div>
+        </div>
+      </div>
+      <div class="timeline-item reveal reveal-delay-1">
+        <div class="tl-phase">Day 2</div>
+        <div class="tl-line"></div>
+        <div class="tl-content">
+          <div class="tl-title">Deep Networking & Scouting</div>
+          <div class="tl-items">
+            <div class="tl-item"><span class="tl-dot"></span>Startup floor scouting — filtering for NEDGEX priorities</div>
+            <div class="tl-item"><span class="tl-dot"></span>Attending innovation-focused panels (AI, industrial tech, IoT)</div>
+            <div class="tl-item"><span class="tl-dot"></span>Side event attendance — curated ecosystem gatherings</div>
+            <div class="tl-item"><span class="tl-dot"></span>Meetings with accelerators and venture studios</div>
+          </div>
+        </div>
+      </div>
+      <div class="timeline-item reveal reveal-delay-2">
+        <div class="tl-phase">Day 3</div>
+        <div class="tl-line"></div>
+        <div class="tl-content">
+          <div class="tl-title">Business Development & Closing Connections</div>
+          <div class="tl-items">
+            <div class="tl-item"><span class="tl-dot"></span>Follow-up meetings and deeper conversations</div>
+            <div class="tl-item"><span class="tl-dot"></span>Introduction sessions with corporates and innovation leaders</div>
+            <div class="tl-item"><span class="tl-dot"></span>Evening ecosystem events and relationship building</div>
+            <div class="tl-item"><span class="tl-dot"></span>First synthesis of contacts and insights gathered</div>
+          </div>
+        </div>
+      </div>
+      <div class="timeline-item reveal reveal-delay-3">
+        <div class="tl-phase">Post-Event</div>
+        <div class="tl-line"></div>
+        <div class="tl-content">
+          <div class="tl-title">Synthesis & Delivery</div>
+          <div class="tl-items">
+            <div class="tl-item"><span class="tl-dot"></span>Curated contact list with context and next steps</div>
+            <div class="tl-item"><span class="tl-dot"></span>Innovation trends and ecosystem insights report</div>
+            <div class="tl-item"><span class="tl-dot"></span>Opportunity mapping specific to NEDGEX's agenda</div>
+            <div class="tl-item"><span class="tl-dot"></span>Strategic debrief and follow-up recommendations</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<!-- DELIVERABLES -->
+<section class="deliverables" id="deliverables">
+  <div class="section-inner">
+    <div class="section-eyebrow reveal">
+      <span class="eyebrow-dot"></span>
+      <span class="eyebrow-label">Deliverables</span>
+      <span class="eyebrow-num">05</span>
+    </div>
+    <h2 class="section-title reveal reveal-delay-1">
+      What NEDGEX<br><em>Will Receive</em>
+    </h2>
+    <p class="section-body reveal reveal-delay-2" style="margin-bottom:0">
+      Every engagement produces concrete, actionable outputs — not just a list of names.
+    </p>
+
+    <div class="deliv-grid">
+      <div class="deliv-item reveal reveal-delay-1">
+        <div class="deliv-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.2">
+            <path d="M17 21v-2a4 4 0 00-4-4H5a4 4 0 00-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 00-3-3.87M16 3.13a4 4 0 010 7.75"/>
+          </svg>
+        </div>
+        <div class="deliv-title">Curated Contact List</div>
+        <div class="deliv-body">Structured contacts with context, connection angle and recommended follow-up actions for each relationship.</div>
+      </div>
+      <div class="deliv-item reveal reveal-delay-2">
+        <div class="deliv-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.2">
+            <path d="M2 3h6a4 4 0 014 4v14a3 3 0 00-3-3H2z"/><path d="M22 3h-6a4 4 0 00-4 4v14a3 3 0 013-3h7z"/>
+          </svg>
+        </div>
+        <div class="deliv-title">Ecosystem Insights Report</div>
+        <div class="deliv-body">A synthesized report of the Brazilian innovation landscape, key players and strategic patterns relevant to NEDGEX.</div>
+      </div>
+      <div class="deliv-item reveal reveal-delay-3">
+        <div class="deliv-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.2">
+            <polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/>
+          </svg>
+        </div>
+        <div class="deliv-title">Innovation Trends Briefing</div>
+        <div class="deliv-body">A focused briefing on emerging technologies, business models and market signals captured at Web Summit Rio 2026.</div>
+      </div>
+      <div class="deliv-item reveal reveal-delay-1">
+        <div class="deliv-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.2">
+            <circle cx="11" cy="11" r="8"/><path d="M21 21l-4.35-4.35"/>
+          </svg>
+        </div>
+        <div class="deliv-title">Opportunity Mapping</div>
+        <div class="deliv-body">A structured map of partnership, investment, collaboration and market expansion opportunities identified during the event.</div>
+      </div>
+      <div class="deliv-item reveal reveal-delay-2">
+        <div class="deliv-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.2">
+            <rect x="2" y="3" width="20" height="14" rx="2"/><path d="M8 21h8M12 17v4"/>
+          </svg>
+        </div>
+        <div class="deliv-title">Event Summary & Debrief</div>
+        <div class="deliv-body">A comprehensive debrief of the event — key conversations, sessions attended, impressions and strategic recommendations.</div>
+      </div>
+      <div class="deliv-item reveal reveal-delay-3">
+        <div class="deliv-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.2">
+            <path d="M14.5 10c-.83 0-1.5-.67-1.5-1.5v-5c0-.83.67-1.5 1.5-1.5s1.5.67 1.5 1.5v5c0 .83-.67 1.5-1.5 1.5z"/><path d="M20.5 10H19V8.5c0-.83.67-1.5 1.5-1.5s1.5.67 1.5 1.5-.67 1.5-1.5-1.5z"/><path d="M9.5 14c.83 0 1.5.67 1.5 1.5v5c0 .83-.67 1.5-1.5 1.5S8 21.33 8 20.5v-5c0-.83.67-1.5 1.5-1.5z"/><path d="M3.5 14H5v1.5c0 .83-.67 1.5-1.5 1.5S2 16.33 2 15.5 2.67 14 3.5 14z"/>
+          </svg>
+        </div>
+        <div class="deliv-title">Optional: Content Assets</div>
+        <div class="deliv-body">LinkedIn posts, event documentation and thought leadership content positioning NEDGEX's presence at the event.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<!-- PREP -->
+<section class="prep" id="prep">
+  <div class="section-inner">
+    <div class="section-eyebrow reveal">
+      <span class="eyebrow-dot"></span>
+      <span class="eyebrow-label">Pre-Event Work</span>
+      <span class="eyebrow-num">06</span>
+    </div>
+    <h2 class="section-title reveal reveal-delay-1">
+      Strategic Preparation<br><em>Before the Event</em>
+    </h2>
+    <p class="section-body reveal reveal-delay-2" style="max-width:560px">
+      Preparation is where strategic representation begins. Before setting foot at Web Summit Rio, a structured pre-event process ensures every interaction is intentional.
+    </p>
+
+    <div class="prep-steps">
+      <div class="prep-step reveal reveal-delay-1">
+        <div class="prep-step-num">01</div>
+        <div class="prep-step-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.2">
+            <rect x="3" y="4" width="18" height="18" rx="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/>
+          </svg>
+        </div>
+        <div class="prep-step-title">Reviewing the Full Agenda</div>
+      </div>
+      <div class="prep-step reveal reveal-delay-2">
+        <div class="prep-step-num">02</div>
+        <div class="prep-step-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.2">
+            <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z"/><circle cx="12" cy="10" r="3"/>
+          </svg>
+        </div>
+        <div class="prep-step-title">Mapping Side Events</div>
+      </div>
+      <div class="prep-step reveal reveal-delay-3">
+        <div class="prep-step-num">03</div>
+        <div class="prep-step-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.2">
+            <path d="M22 11.08V12a10 10 0 11-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/>
+          </svg>
+        </div>
+        <div class="prep-step-title">Defining Strategic Interests</div>
+      </div>
+      <div class="prep-step reveal reveal-delay-4">
+        <div class="prep-step-num">04</div>
+        <div class="prep-step-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.2">
+            <circle cx="11" cy="11" r="8"/><path d="M21 21l-4.35-4.35"/>
+          </svg>
+        </div>
+        <div class="prep-step-title">Identifying Target Companies</div>
+      </div>
+      <div class="prep-step reveal reveal-delay-5">
+        <div class="prep-step-num">05</div>
+        <div class="prep-step-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.2">
+            <path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 013.07 9.8a19.79 19.79 0 01-3.07-8.67A2 2 0 012 1h3a2 2 0 012 1.72 12.84 12.84 0 00.7 2.81 2 2 0 01-.45 2.11L6.09 8.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45 12.84 12.84 0 002.81.7A2 2 0 0122 16.92z"/>
+          </svg>
+        </div>
+        <div class="prep-step-title">Scheduling Meetings in Advance</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<!-- LIMITED -->
+<section class="limited">
+  <div class="section-inner">
+    <div class="limited-inner">
+      <div class="limited-badge reveal">
+        <div class="badge-dot"></div>
+        <span>Selective by Design</span>
+      </div>
+      <h2 class="section-title reveal reveal-delay-1" style="max-width:600px;margin:0 auto 24px">
+        Representation Limited to<br><em>Maximum 3 Companies</em>
+      </h2>
+      <p class="section-body reveal reveal-delay-2" style="margin:0 auto;text-align:center;max-width:520px">
+        Limiting representation to three companies ensures deep focus, strategic alignment and the quality of attention each partner deserves. This is not a volume model — it's a quality model.
+      </p>
+
+
+    </div>
+  </div>
+</section>
+
+
+<!-- PRICING -->
+<section class="pricing" id="pricing">
+  <div class="section-inner">
+    <div class="section-eyebrow reveal">
+      <span class="eyebrow-dot"></span>
+      <span class="eyebrow-label">Investment</span>
+      <span class="eyebrow-num">07</span>
+    </div>
+    <h2 class="section-title reveal reveal-delay-1">
+      Early Bird<br><em>Package</em>
+    </h2>
+    <p class="section-body reveal reveal-delay-2" style="max-width:520px">
+      A transparent investment model — operational costs with a focused representation fee, structured for early commitment.
+    </p>
+
+    <div class="pricing-card reveal reveal-delay-3">
+      <div class="pricing-header">
+        <div class="pricing-badge-wrap">
+          <div class="pricing-badge">
+            <span>Early Bird · Limited Availability</span>
+          </div>
+        </div>
+        <div class="pricing-title">Strategic Representation Package</div>
+        <div class="pricing-sub">Web Summit Rio 2026 · Full Event Coverage</div>
+      </div>
+
+      <div class="pricing-body">
+        <div class="cost-breakdown">
+          <div class="cost-label">Operational Costs</div>
+          <div class="cost-lines">
+            <div class="cost-line">
+              <span class="cost-name">
+                <span style="display:flex;align-items:center;gap:8px">
+                  <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.2"><path d="M22 2L11 13M22 2l-7 20-4-9-9-4 20-7z"/></svg>
+                  Flight
+                </span>
+              </span>
+              <span class="cost-val">R$ 800</span>
+            </div>
+            <div class="cost-line">
+              <span class="cost-name">
+                <span style="display:flex;align-items:center;gap:8px">
+                  <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.2"><rect x="2" y="3" width="20" height="14" rx="2"/><path d="M8 21h8M12 17v4"/></svg>
+                  Event Ticket
+                </span>
+              </span>
+              <span class="cost-val">R$ 1.050</span>
+            </div>
+            <div class="cost-line">
+              <span class="cost-name">
+                <span style="display:flex;align-items:center;gap:8px">
+                  <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.2"><path d="M3 9l9-7 9 7v11a2 2 0 01-2 2H5a2 2 0 01-2-2z"/></svg>
+                  Accommodation
+                </span>
+              </span>
+              <span class="cost-val">R$ 2.000</span>
+            </div>
+            <div class="cost-line">
+              <span class="cost-name">
+                <span style="display:flex;align-items:center;gap:8px">
+                  <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.2"><path d="M18 8h1a4 4 0 010 8h-1M2 8h16v9a4 4 0 01-4 4H6a4 4 0 01-4-4V8zM6 1v3M10 1v3M14 1v3"/></svg>
+                  Food
+                </span>
+              </span>
+              <span class="cost-val">R$ 600</span>
+            </div>
+            <div class="cost-line">
+              <span class="cost-name">
+                <span style="display:flex;align-items:center;gap:8px">
+                  <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.2"><rect x="1" y="3" width="15" height="13" rx="1"/><path d="M16 8h4l3 3v5h-7V8z"/><circle cx="5.5" cy="18.5" r="2.5"/><circle cx="18.5" cy="18.5" r="2.5"/></svg>
+                  Transportation
+                </span>
+              </span>
+              <span class="cost-val">R$ 600</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="cost-subtotal">
+          <span class="cost-subtotal-label">Total Operational Costs</span>
+          <span class="cost-subtotal-val">R$ 5.050</span>
+        </div>
+
+        <div class="cost-fee">
+          <div class="cost-fee-left">
+            <div class="cost-fee-label">Early Bird Representation Fee</div>
+            <div class="cost-fee-note">Strategic representation, networking & deliverables</div>
+          </div>
+          <span class="cost-fee-val">R$ 1.000</span>
+        </div>
+
+        <div class="cost-total">
+          <span class="cost-total-label">Total Investment</span>
+          <span class="cost-total-val">R$ 6.050</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<!-- ABOUT -->
+<section class="about" id="about">
+  <div class="section-inner">
+    <div class="about-grid">
+      <div class="about-photo-wrap reveal">
+        <div class="about-photo-frame">
+          <!-- Replace with: <img src="your-photo.jpg" alt="Giulia" style="width:100%;height:100%;object-fit:cover"> -->
+          <div class="about-photo-placeholder">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1">
+              <path d="M20 21v-2a4 4 0 00-4-4H8a4 4 0 00-4 4v2"/><circle cx="12" cy="7" r="4"/>
+            </svg>
+            <span>Photo Placeholder</span>
+          </div>
+        </div>
+        <div class="about-photo-accent">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1">
+            <path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"/>
+          </svg>
+        </div>
+      </div>
+      <div class="about-content">
+        <div class="section-eyebrow reveal" style="margin-bottom:32px">
+          <span class="eyebrow-dot"></span>
+          <span class="eyebrow-label">Your Representation</span>
+          <span class="eyebrow-num">08</span>
+        </div>
+        <div class="about-name reveal reveal-delay-1">Giulia</div>
+        <div class="about-role reveal reveal-delay-1">Innovation Strategist & Ecosystem Builder</div>
+        <p class="about-bio reveal reveal-delay-2">
+          An innovation strategist with deep roots in Brazil's startup and industrial innovation ecosystem. With experience as a venture builder and ecosystem connector, Giulia has worked with international companies navigating the Brazilian market — identifying opportunities, building relationships and translating local dynamics into global strategy.
+        </p>
+        <p class="about-bio reveal reveal-delay-3" style="margin-top:-16px">
+          From industrial innovation to startup ecosystems and corporate venture programs, the focus is always the same: turning ecosystem access into strategic advantage.
+        </p>
+        <div class="about-tags reveal reveal-delay-4">
+          <span class="about-tag">Innovation Strategy</span>
+          <span class="about-tag">Venture Building</span>
+          <span class="about-tag">Ecosystem Mapping</span>
+          <span class="about-tag">Industrial Innovation</span>
+          <span class="about-tag">Market Expansion</span>
+          <span class="about-tag">Brazil Ecosystem</span>
+          <span class="about-tag">International Companies</span>
+        </div>
+        <div class="hero-actions reveal reveal-delay-5">
+          <a href="https://www.linkedin.com/in/giulia-softlanding?utm_source=share_via&utm_content=profile&utm_medium=member_ios" class="btn btn-ghost" target="_blank">
+            <svg viewBox="0 0 24 24" fill="currentColor"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg>
+            Connect on LinkedIn
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<!-- FINAL CTA -->
+<section class="cta-final" id="contact">
+  <div class="section-inner">
+    <div class="section-eyebrow reveal" style="justify-content:center;margin-bottom:40px">
+      <span class="eyebrow-dot"></span>
+      <span class="eyebrow-label">Let's Begin</span>
+    </div>
+    <h2 class="cta-final-title reveal reveal-delay-1">
+      Looking Forward to Representing<br><em>NEDGEX</em> at Web Summit Rio 2026
+    </h2>
+    <p class="cta-final-sub reveal reveal-delay-2">
+      Limited availability. Early commitment secures the Early Bird package and priority preparation.
+    </p>
+    <div class="cta-final-actions reveal reveal-delay-3">
+      <a href="https://wa.me/5548999558413" class="btn btn-primary" target="_blank">
+        <svg viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/><path d="M12 0C5.373 0 0 5.373 0 12c0 2.123.555 4.116 1.528 5.845L0 24l6.335-1.508A11.954 11.954 0 0012 24c6.627 0 12-5.373 12-12S18.627 0 12 0zm0 22c-1.869 0-3.618-.487-5.13-1.34l-.368-.214-3.762.895.946-3.653-.234-.381A9.944 9.944 0 012 12C2 6.477 6.477 2 12 2s10 4.477 10 10-4.477 10-10 10z"/></svg>
+        WhatsApp
+      </a>
+      <a href="https://www.linkedin.com/in/giulia-softlanding?utm_source=share_via&utm_content=profile&utm_medium=member_ios" class="btn btn-ghost" target="_blank">
+        <svg viewBox="0 0 24 24" fill="currentColor"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg>
+        LinkedIn
+      </a>
+      <a href="mailto:hello@example.com" class="btn btn-ghost">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+        Send Email
+      </a>
+    </div>
+
+    <div class="footer-line">
+      <div class="footer-brand">NEDGEX × Web Summit Rio 2026 · Strategic Representation Proposal</div>
+      <div class="footer-meta">Prepared by Giulia · Airplane</div>
+      <div class="footer-logo">
+        <svg viewBox="0 0 16 16" fill="none">
+          <path d="M2 8L14 2L10 8L14 14L2 8Z" stroke="#F25440" stroke-width="1" stroke-linejoin="round" fill="none"/>
+        </svg>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<script>
+// Scroll reveal
+const reveals = document.querySelectorAll('.reveal');
+const observer = new IntersectionObserver((entries) => {
+  entries.forEach(entry => {
+    if (entry.isIntersecting) {
+      entry.target.classList.add('visible');
+    }
+  });
+}, { threshold: 0.08, rootMargin: '0px 0px -40px 0px' });
+
+reveals.forEach(el => observer.observe(el));
+
+// Subtle parallax on hero
+window.addEventListener('scroll', () => {
+  const y = window.scrollY;
+  const heroGlow = document.querySelector('.hero-glow');
+  if (heroGlow) {
+    heroGlow.style.transform = `translateY(${y * 0.15}px)`;
+  }
+  const hc3 = document.querySelector('.hc3');
+  if (hc3) hc3.style.transform = `translateY(${y * 0.08}px)`;
+  const hc4 = document.querySelector('.hc4');
+  if (hc4) hc4.style.transform = `translateY(${y * 0.05}px)`;
+}, { passive: true });
+</script>
+</body>
+</html>
